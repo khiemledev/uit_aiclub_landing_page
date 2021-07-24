@@ -23,7 +23,10 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: npm install
       - run: npm run build
-      - run: cp index.html ./dist
+      - name: Construct folder
+        run: mkdir -p ./dist/dist
+        run: cp ./dist ./dist/dist
+        run: cp index.html ./dist
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
